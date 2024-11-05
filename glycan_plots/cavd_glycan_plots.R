@@ -89,6 +89,7 @@ igg <- dt %>% filter(isotype=="IgG" & glycan_m_number %in% glycan_ordering[1:20]
 # turn glycan into factor so plots are ordered
 igg$glycan_m_number_f = factor(igg$glycan_m_number, levels=glycan_ordering[1:20])
 
+# this plots the first 20 glycans for igg.
 ggplot(igg, aes(study_week, centered_mean)) + 
   geom_boxplot() +
   scale_y_log10() +
