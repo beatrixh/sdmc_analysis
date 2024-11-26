@@ -53,6 +53,14 @@ calc_responses <- calc_responses %>%
   mutate(count_of_responses = sum(response_flag, na.rm = TRUE)) %>%
   ungroup()
 
+## hi tzu-jung! this isn't the code that generated what we were looking at on that call
+## but this should do the same thing.
+## calc_responses still has unique rows per each sample/isotype/week/glycan. 
+## so i believe you'd get the table you want from:
+
+summary <- calc_responses[,c('isotype', 'study_week', 'glycan_m_number', 'count_of_responses')]
+summary <- unique(summary)
+
 calc_responses <- calc_responses %>%
   group_by(isotype, study_week, glycan_m_number) %>%
   mutate(prop_of_responses = mean(response_flag, na.rm = TRUE)) %>%
